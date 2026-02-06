@@ -62,50 +62,18 @@ document.addEventListener('click', (event) => {
 // ===========================
 // CONTACT FORM HANDLING
 // ===========================
-const contactForm = document.getElementById('contactForm');
-const formMessage = document.getElementById('formMessage');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+function showFormMessage(message, type) {
+    const formMessage = document.getElementById('formMessage');
+    if (formMessage) {
+        formMessage.textContent = message;
+        formMessage.className = `form-message ${type}`;
+        formMessage.style.display = 'block';
         
-        // Get form data
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            subject: document.getElementById('subject').value,
-            section: document.getElementById('child-section').value,
-            message: document.getElementById('message').value,
-            consent: document.getElementById('consent').checked
-        };
-        
-        // Validate form
-        if (!formData.consent) {
-            showFormMessage('Veuillez accepter la politique de confidentialité', 'error');
-            return;
-        }
-        
-        // Simulate form submission (In real scenario, you would send to a server)
-        showFormMessage('✓ Message envoyé avec succès! Nous vous contacterons très bientôt.', 'success');
-        
-        // Reset form
-        contactForm.reset();
-        
-        // Log form data (for demonstration)
-        console.log('Form Data:', formData);
-        
-        // Clear message after 5 seconds
         setTimeout(() => {
             formMessage.style.display = 'none';
         }, 5000);
-    });
-}
-
-function showFormMessage(message, type) {
-    formMessage.textContent = message;
-    formMessage.className = `form-message ${type}`;
-    formMessage.style.display = 'block';
+    }
 }
 
 // ===========================
