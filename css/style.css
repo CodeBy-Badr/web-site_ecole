@@ -423,7 +423,7 @@ section {
 
 .activities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
@@ -1043,7 +1043,11 @@ section {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+    height: 450px;
+    width: 600px;
 }
+
+
 
 /* FAQ Section */
 .faq-section {

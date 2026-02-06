@@ -45,18 +45,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<!DOCTYPE html>
     <html>
     <head>
-        <link rel='stylesheet' href='../css/style.css'> <!-- T-akked mn l-path d CSS -->
-    </head>
+        <link rel='stylesheet' href='../css/style.css'> 
     <body>
-        <script src='../js/script.js'></script> <!-- T-akked mn l-path d JS -->
-        <script>
+        <script src='../js/script.js'></script> 
             window.onload = function() {
                 if (typeof showFormMessage === 'function') {
                     showFormMessage('$msg', '$type');
                 } else {
                     alert('$msg');
                 }
-                // Rejja3 l-user l-page d contact men be3d 3 tswani
                 setTimeout(function(){
                     window.location.href = '../contact.html'; 
                 }, 3000);
