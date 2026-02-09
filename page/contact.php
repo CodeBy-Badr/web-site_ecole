@@ -1,3 +1,11 @@
+<?php 
+session_start();
+// Générer le token CSRF s'il n'existe pas
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf_token = $_SESSION['csrf_token'];
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -20,7 +28,7 @@
                 <li class="nav-item"><a href="../index.html" class="nav-link">Accueil</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">À Propos</a></li>
                 <li class="nav-item"><a href="sections.html" class="nav-link">Nos Sections</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li class="nav-item"><a href="contact.php" class="nav-link active">Contact</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -133,12 +141,7 @@
                         <label for="consent">J'accepte la politique de confidentialité</label>
                     </div>
 
-                    <?php 
-                    session_start();
-                    $csrf_token = isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : bin2hex(random_bytes(32));
-                    if (empty($_SESSION['csrf_token'])) $_SESSION['csrf_token'] = $csrf_token;
-                    ?>
-                    <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8'); ?>">
 
                     <button type="submit" class="btn btn-primary btn-large">Envoyer le Message</button>
                 </form>
@@ -247,7 +250,7 @@
                 <h4>Liens Utiles</h4>
                 <ul>
                     <li><a href="about.html">À Propos</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                     <li><a href="#">Actualités</a></li>
                     <li><a href="#">Calendrier</a></li>
                 </ul>
